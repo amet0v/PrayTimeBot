@@ -83,8 +83,8 @@ async def create_daily_schedule():
     await send_time()
     run_time_asr = datetime.now().replace(hour=asr_time[2], minute=asr_time[3], second=0, microsecond=0)
     run_time_maghrib = datetime.now().replace(hour=maghrib_time[2], minute=maghrib_time[3], second=0, microsecond=0)
-    scheduler.add_job(send_notification(asr_time[2], asr_time[3]), "date", run_date=run_time_asr)
-    scheduler.add_job(send_notification(maghrib_time[2], maghrib_time[3]), "date", run_date=run_time_maghrib)
+    scheduler.add_job(send_notification, "date", run_date=run_time_asr, args=[asr_time[2], asr_time[3]])
+    scheduler.add_job(send_notification, "date", run_date=run_time_maghrib, args=[maghrib_time[2], maghrib_time[3]])
 
 
 # Хэндлер на команду /start
