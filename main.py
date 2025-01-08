@@ -67,10 +67,10 @@ async def create_daily_schedule():
     maghrib_time = await round_time(time_array[3])
     asr_time_min = asr_time[1]
     maghrib_time_min = maghrib_time[1]
-    if asr_time[1] == 0:
-        asr_time_min = "00"
-    if maghrib_time[1] == 0:
-        maghrib_time_min = "00"
+    if asr_time[1] < 10:
+        asr_time_min = "0" + str(asr_time[1])
+    if maghrib_time[1] < 10:
+        maghrib_time_min = "0" + str(maghrib_time[1])
     #костыль на +5 мин магриб
     schedule_str = (f"📆 Время намаза\n\n"
                     f"🌅 Фаджр(Багымдат): {time_array[0]}\n"
