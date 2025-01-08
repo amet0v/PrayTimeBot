@@ -65,18 +65,18 @@ async def create_daily_schedule():
     time_array = await get_time()
     asr_time = await round_time(time_array[2])
     maghrib_time = await round_time(time_array[3])
-    asr_time[4] = asr_time[1]
-    maghrib_time[4] = maghrib_time[1]
+    asr_time_min = asr_time[1]
+    maghrib_time_min = maghrib_time[1]
     if asr_time[1] == 0:
-        asr_time[4] = "00"
+        asr_time_min = "00"
     if maghrib_time[1] == 0:
-        maghrib_time[4] = "00"
+        maghrib_time_min = "00"
     #костыль на +5 мин магриб
     schedule_str = (f"📆 Время намаза\n\n"
                     f"🌅 Фаджр(Багымдат): {time_array[0]}\n"
                     f"☀️ Зухр(Бешим): {time_array[1]}\n"
-                    f"⛅ Аср: {time_array[2]} (Сбор {asr_time[0]}:{asr_time[4]})\n"
-                    f"🌇 Магриб(Шам): {time_array[3]} (Сбор {maghrib_time[0]}:{maghrib_time[4]})\n"
+                    f"⛅ Аср: {time_array[2]} (Сбор {asr_time[0]}:{asr_time_min})\n"
+                    f"🌇 Магриб(Шам): {time_array[3]} (Сбор {maghrib_time[0]}:{maghrib_time_min})\n"
                     f"🌙 Иша(Куптан): {time_array[4]}")
 
     TimeHolder.time_schedule = schedule_str
